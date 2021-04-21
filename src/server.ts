@@ -1,7 +1,11 @@
 import express from "express";
 
+import "./database" //se for um arquivo index, ele reconhece mesmo sem referenciar
+import { routes } from "./routes"
+
 const app = express();
 
+app.use(express.json())
 
 /**
  * GET = Buscas
@@ -10,18 +14,7 @@ const app = express();
  * DELETE = Deletar
  * PATCH = Alterar uma informação específica
  */
+app.use(routes)
 
-app.get("/",(request, response) => {
-    // return response.send("Olá NLW 05")
-    return response.json({
-        message: "Olá NLW 05"
-    })
-})
-
-app.post("/", (request, response) => {
-    return response.json({
-        message: "Usuário salvo com sucesso!"
-    })
-})
 
 app.listen(3333, ()=> console.log("Server is running on port 3333"))
